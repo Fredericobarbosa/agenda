@@ -1,4 +1,7 @@
-FROM python:3.11-slim
+FROM python:3.11-slim-bullseye
+
+# Atualiza pacotes do sistema para corrigir vulnerabilidades
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 
 # Define o diretório de trabalho
 WORKDIR /app
