@@ -5,27 +5,32 @@
     <link rel="stylesheet" href="/static/style.css" />
 </head>
 <body>
-    <h1>Minhas Tarefas</h1>
-    {% if edit_task %}
-    <form method="POST" action="/edit/{{ edit_task[0] }}">
-        <input type="text" name="task" value="{{ edit_task[1] }}" required />
-        <button type="submit">Salvar</button>
-        <a href="/">Cancelar</a>
-    </form>
-    {% else %}
-    <form method="POST">
-        <input type="text" name="task" required />
-        <button type="submit">Adicionar</button>
-    </form>
-    {% endif %}
-    <div class="cards">
-        {% for task in tasks %}
-        <div class="card">
-            {{ task[1] }} 
-            <a href="/delete/{{ task[0] }}">🗑️</a>
-            <a href="/edit/{{ task[0] }}">✏️</a>
+    <div class="container">
+        <h1>📝 Minhas Tarefas</h1>
+        {% if edit_task %}
+        <form method="POST" action="/edit/{{ edit_task[0] }}" class="task-form">
+            <input type="text" name="task" value="{{ edit_task[1] }}" required />
+            <button type="submit" class="btn primary">Salvar</button>
+            <a href="/" class="btn cancel">Cancelar</a>
+        </form>
+        {% else %}
+        <form method="POST" class="task-form">
+            <input type="text" name="task" placeholder="Digite uma nova tarefa..." required />
+            <button type="submit" class="btn primary">Adicionar</button>
+        </form>
+        {% endif %}
+        
+        <div class="cards">
+            {% for task in tasks %}
+            <div class="card">
+                <span>{{ task[1] }}</span>
+                <div class="actions">
+                    <a href="/edit/{{ task[0] }}" class="icon edit" title="Editar">✏️</a>
+                    <a href="/delete/{{ task[0] }}" class="icon delete" title="Excluir">🗑️</a>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </body>
 </html>
