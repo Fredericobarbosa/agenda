@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>📝 Minhas Tarefas</h1>
+        <h1>📝 Minha Agenda</h1>
         {% if edit_task %}
         <form method="POST" action="/edit/{{ edit_task[0] }}" class="task-form">
             <input type="text" name="task" value="{{ edit_task[1] }}" required />
